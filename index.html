@@ -4,7 +4,6 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ronald Christopher Zapanta — Virtual Assistant</title>
-<link rel="icon" type="image/png" href="icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
   :root {
@@ -38,26 +37,9 @@
     border-bottom: 1px solid var(--cream);
   }
   .nav-logo {
-    display: flex; align-items: center; gap: 0.6rem;
-    text-decoration: none;
-  }
-  .logo-mark {
-    width: 38px; height: 38px; border-radius: 10px;
-    background: var(--ink);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 2px 8px rgba(26,26,46,0.18);
-  }
-  .logo-text-group { display: flex; flex-direction: column; line-height: 1; }
-  .logo-initials {
     font-family: 'Playfair Display', serif;
-    font-size: 1rem; font-weight: 700;
+    font-size: 1.1rem; font-weight: 700;
     color: var(--ink); letter-spacing: 0.04em;
-  }
-  .logo-role {
-    font-size: 0.62rem; font-weight: 500; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--accent);
-    margin-top: 1px;
   }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
@@ -315,6 +297,72 @@
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  /* ── VIDEOS ── */
+  #videos { background: var(--white); }
+  .videos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+  .video-card {
+    background: var(--paper);
+    border: 1px solid var(--cream);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    transition: all 0.3s;
+    position: relative;
+    width: 280px;
+    flex-shrink: 0;
+  }
+  .video-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(26,26,46,0.12); }
+  .video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 177.78%; /* 9:16 vertical aspect ratio */
+    background: var(--ink);
+    overflow: hidden;
+  }
+  .video-embed video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .more-videos-note {
+    display: flex; align-items: flex-start; gap: 1.25rem;
+    margin-top: 2.5rem;
+    padding: 1.75rem 2rem;
+    background: rgba(193,127,62,0.06);
+    border: 1px solid var(--accent-light);
+    border-radius: 1.25rem;
+    max-width: 520px;
+  }
+  .more-videos-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .more-videos-note strong { font-size: 1rem; color: var(--ink); display: block; margin-bottom: 0.35rem; }
+  .more-videos-note p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+  .video-info { padding: 1.5rem; }
+  .video-platform {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
+  }
+  .video-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .video-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+  .add-video-note {
+    margin-top: 2.5rem;
+    padding: 1.5rem 2rem;
+    background: rgba(193,127,62,0.06);
+    border: 1px dashed var(--accent-light);
+    border-radius: 1rem;
+    font-size: 0.85rem; color: var(--muted);
+    text-align: center; line-height: 1.7;
+  }
+  .add-video-note strong { color: var(--accent); }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
@@ -327,6 +375,7 @@
     .stats-bar { gap: 2.5rem; padding: 2rem 1.5rem; }
     section { padding: 4rem 1.5rem; }
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .video-card { width: 100%; }
   }
 </style>
 </head>
@@ -334,23 +383,11 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo">
-    <div class="logo-mark">
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="3" y="8" width="16" height="11" rx="2" stroke="#e8c99a" stroke-width="1.5" fill="none"/>
-        <path d="M8 8V6.5C8 5.67 8.67 5 9.5 5h3c.83 0 1.5.67 1.5 1.5V8" stroke="#e8c99a" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="3" y1="13" x2="19" y2="13" stroke="#e8c99a" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="11" y1="11" x2="11" y2="15" stroke="#c17f3e" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <div class="logo-text-group">
-      <span class="logo-initials">R.C. Zapanta</span>
-      <span class="logo-role">Virtual Assistant</span>
-    </div>
-  </a>
+  <div class="nav-logo">R.C. Zapanta</div>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#videos">Videos</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -360,16 +397,6 @@
 <section id="hero">
   <div class="hero-bg-shape"></div>
   <div class="hero-text">
-    <!-- Hero Logo Mark -->
-    <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;animation:fadeUp 0.5s ease both;">
-      <div style="width:52px;height:52px;border-radius:14px;background:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(26,26,46,0.2);">
-        <svg width="28" height="28" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="8" width="16" height="11" rx="2" stroke="#e8c99a" stroke-width="1.5" fill="none"/><path d="M8 8V6.5C8 5.67 8.67 5 9.5 5h3c.83 0 1.5.67 1.5 1.5V8" stroke="#e8c99a" stroke-width="1.5" stroke-linecap="round"/><line x1="3" y1="13" x2="19" y2="13" stroke="#e8c99a" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="11" x2="11" y2="15" stroke="#c17f3e" stroke-width="1.8" stroke-linecap="round"/></svg>
-      </div>
-      <div style="display:flex;flex-direction:column;line-height:1.2;">
-        <span style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--ink);letter-spacing:0.03em;">R.C. Zapanta</span>
-        <span style="font-size:0.65rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);">Virtual Assistant</span>
-      </div>
-    </div>
     <span class="hero-tag">Available for Remote Work</span>
     <h1 class="hero-name">Ronald<br/><span>Christopher</span><br/>Zapanta</h1>
     <p class="hero-subtitle">Virtual Assistant specializing in administrative support, research, and document management — bringing tech-savvy precision to every task.</p>
@@ -479,6 +506,40 @@
   </div>
 </section>
 
+<!-- VIDEOS -->
+<section id="videos">
+  <p class="section-label reveal">My Work</p>
+  <h2 class="section-title reveal">Sample Videos</h2>
+  <p class="section-desc reveal">Short-form vertical content edited for TikTok, Instagram Reels, and YouTube Shorts — built to hook, retain, and convert.</p>
+  <div class="videos-grid">
+
+    <!-- VIDEO CARD 1 — replace "videos/clip1.mp4" with your actual file path -->
+    <div class="video-card reveal">
+      <div class="video-embed">
+        <video controls playsinline preload="metadata" poster="videos/thumb1.jpg">
+          <source src="examp.mp4" type="video/mp4">
+          Your browser does not support video playback.
+        </video>
+      </div>
+      <div class="video-info">
+        <p class="video-platform">TikTok / Reels</p>
+        <h3 class="video-title"></h3>
+        <p class="video-desc">this is a video I made for a whop campaign.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="more-videos-note reveal">
+    <span class="more-videos-icon">📩</span>
+    <div>
+      <strong>Want to see more?</strong>
+      <p>More sample edits are available upon request — just reach out and I'll send them over.</p>
+      <a href="#contact" class="btn-primary" style="display:inline-block; margin-top:1rem; font-size:0.85rem; padding:0.7rem 1.6rem;">Contact Me</a>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="about-grid">
@@ -517,8 +578,10 @@
     <p class="section-label reveal">Get In Touch</p>
     <h2 class="section-title reveal">Let's work together.</h2>
     <p class="section-desc reveal" style="margin: 0 auto 0.5rem;">I'm open to part-time, full-time, and project-based VA work. Response time within 24 hours.</p>
-    <a href="/cdn-cgi/l/email-protection#84f6ebeae5e8e0fee5f4e5eaf0e5b5b2c4e3e9e5ede8aae7ebe9" class="contact-email reveal"><span class="__cf_email__" data-cfemail="780a171619141c02190819160c19494e381f15191114561b1715">[email&#160;protected]</span></a>
+    <a href="mailto:ronaldzapanta16@gmail.com" class="contact-email reveal">ronaldzapanta16@gmail.com</a>
     <div class="contact-links reveal">
+      <a href="https://linkedin.com/in/ronald-christopher-zapanta" target="_blank" class="contact-link">LinkedIn</a>
+      <span style="color:var(--cream)">·</span>
       <a href="https://github.com/Ronald16zapanta" target="_blank" class="contact-link">GitHub</a>
       <span style="color:var(--cream)">·</span>
       <a href="tel:+639109735665" class="contact-link">+63 910 973 5665</a>
@@ -530,8 +593,18 @@
   © 2025 Ronald Christopher Zapanta · Antipolo City, Rizal, Philippines
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) =>
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
